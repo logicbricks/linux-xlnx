@@ -14,6 +14,8 @@
  * GNU General Public License for more details.
  */
 
+#include <linux/delay.h>
+#include <linux/gpio.h>
 #include <linux/init.h>
 #include <linux/kernel.h>
 #include <linux/cpu.h>
@@ -41,6 +43,8 @@
 #include <asm/hardware/cache-l2x0.h>
 
 #include "common.h"
+
+#define USB_RESET_B 7
 
 void __iomem *zynq_scu_base;
 
@@ -168,6 +172,12 @@ static void __init zynq_init_late(void)
 static void __init zynq_init_machine(void)
 {
 	of_platform_populate(NULL, of_default_bus_match_table, NULL, NULL);
+
+	gpio_request(USB_RESET_B, "usb-reset");
+	gpio_direction_output(USB_RESET_B, 0);
+	mdelay(1);
+	gpio_set_value(USB_RESET_B, 1);
+	mdelay(1);
 }
 
 static void __init zynq_timer_init(void)

@@ -103,6 +103,13 @@ config CLK_PPC_CORENET
 	  This adds the clock driver support for Freescale PowerPC corenet
 	  platforms using common clock framework.
 
+config COMMON_CLK_LOGICLK
+	tristate "logiCLK driver"
+	default n
+	help
+	---help---
+	  Support for the Xylon logiCLK IP core clock generator for Xilinx
+	  FPGAs
 endmenu
 
 source "drivers/clk/mvebu/Kconfig"

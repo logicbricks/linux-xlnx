@@ -109,6 +109,14 @@ config COMMON_CLK_KEYSTONE
 
 source "drivers/clk/qcom/Kconfig"
 
+config COMMON_CLK_LOGICLK
+	tristate "logiCLK driver"
+	default n
+	help
+	---help---
+	  Support for the Xylon logiCLK IP core clock generator for Xilinx
+	  FPGAs
+
 endmenu
 
 source "drivers/clk/mvebu/Kconfig"
